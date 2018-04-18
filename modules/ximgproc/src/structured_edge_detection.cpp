@@ -703,13 +703,13 @@ public:
 
         std::vector <int> edgeBoundaries; /*!< ... */
         std::vector <int> edgeBins;       /*!< ... */
-    }
+    };
 
     /*!
      * RandomForest getter
      */
 
-    RandomForest getRf();
+    RandomForest getRf()
     {
         return __rf;
     }
@@ -718,7 +718,7 @@ public:
      * RandomForest setter
      */
 
-    void setRf(RandomForest rf);
+    void setRf(RandomForest rf)
     {
         __rf = rf;
     }
