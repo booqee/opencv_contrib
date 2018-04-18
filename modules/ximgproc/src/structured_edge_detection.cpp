@@ -709,7 +709,7 @@ public:
      * RandomForest getter
      */
 
-    RandomForest getRf()
+    RandomForest getRf() const CV_OVERRIDE
     {
         return __rf;
     }
@@ -718,7 +718,7 @@ public:
      * RandomForest setter
      */
 
-    void setRf(RandomForest rf)
+    void setRf(RandomForest rf) const CV_OVERRIDE
     {
         __rf = rf;
     }

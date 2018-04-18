@@ -130,9 +130,9 @@ public:
 
     struct RandomForest;
     
-    RandomForest getRf();
+    CV_WRAP virtual RandomForest getRf() const = 0;
             
-    void setRf(RandomForest rf);
+    CV_WRAP virtual void setRf(RandomForest rf) const = 0;
             
 };
 
