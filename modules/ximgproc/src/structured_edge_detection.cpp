@@ -669,7 +669,7 @@ public:
      * RandomForest setter
      */
 
-    void setRf(cv::ximgproc::RandomForest_t rf) const CV_OVERRIDE
+    void setRf(cv::ximgproc::RandomForest_t rf) CV_OVERRIDE
     {
         __rf = rf;
     }
