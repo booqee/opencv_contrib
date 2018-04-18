@@ -518,6 +518,19 @@ public:
     }
 
     /*!
+        * This constructor doesn't load __rf model from filename
+        *
+        * \param filename : name of the file where the model is stored
+        */
+    StructuredEdgeDetectionImpl(Ptr<const RFFeatureGetter> _howToGetFeatures)
+    : name("StructuredEdgeDetection"),
+    howToGetFeatures( (!_howToGetFeatures.empty())
+                        ? _howToGetFeatures
+                        : createRFFeatureGetter().staticCast<const RFFeatureGetter>() )
+    {
+    }
+
+    /*!
      * The function detects edges in src and draw them to dst
      *
      * \param _src : source image (RGB, float, in [0;1]) to detect edges
@@ -641,6 +654,24 @@ public:
         }
       transpose(dst, dst);
       dst.copyTo(_dst);
+    }
+
+    /*!
+     * RandomForest getter
+     */
+
+    RandomForest getRf();
+    {
+        return __rf;
+    }
+    
+    /*!
+     * RandomForest setter
+     */
+
+    void setRf(RandomForest rf);
+    {
+        __rf = rf;
     }
 
 
@@ -886,6 +917,11 @@ Ptr<StructuredEdgeDetection> createStructuredEdgeDetection(const String &model,
     Ptr<const RFFeatureGetter> howToGetFeatures)
 {
         return makePtr<StructuredEdgeDetectionImpl>(model, howToGetFeatures);
+}
+
+Ptr<StructuredEdgeDetection> createStructuredEdgeDetection(Ptr<const RFFeatureGetter> howToGetFeatures)
+{
+    return makePtr<StructuredEdgeDetectionImpl>(howToGetFeatures);
 }
 
 }
