@@ -61,7 +61,8 @@ namespace ximgproc
 
 
 /*! random forest used to detect edges */
-    typedef struct RandomForest
+    typedef struct RandomForest RandomForest_t;
+    struct RandomForest
     {
         /*! random forest options, e.g. number of trees */
         struct RandomForestOptions
@@ -179,9 +180,9 @@ public:
     CV_WRAP virtual void edgesNms(cv::InputArray edge_image, cv::InputArray orientation_image, cv::OutputArray _dst, int r = 2, int s = 0, float m = 1, bool isParallel = true) const = 0;
 
     
-    CV_WRAP virtual RandomForest getRf() const = 0;
+    CV_WRAP virtual RandomForest_t getRf() const = 0;
             
-    CV_WRAP virtual void setRf(RandomForest rf) const = 0;
+    CV_WRAP virtual void setRf(RandomForest_t rf) const = 0;
             
 };
 

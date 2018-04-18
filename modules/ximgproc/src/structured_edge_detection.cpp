@@ -660,7 +660,7 @@ public:
      * RandomForest getter
      */
 
-    cv::ximgproc::RandomForest getRf() const CV_OVERRIDE
+    cv::ximgproc::RandomForest_t getRf() const CV_OVERRIDE
     {
         return __rf;
     }
@@ -669,7 +669,7 @@ public:
      * RandomForest setter
      */
 
-    void setRf(cv::ximgproc::RandomForest rf) const CV_OVERRIDE
+    void setRf(cv::ximgproc::RandomForest_t rf) const CV_OVERRIDE
     {
         __rf = rf;
     }
@@ -863,7 +863,7 @@ protected:
     /*! optional feature getter (getFeatures method) */
     Ptr<const RFFeatureGetter> howToGetFeatures;
 
-    cv::ximgproc::RandomForest __rf;
+    cv::ximgproc::RandomForest_t __rf;
 };
 
 Ptr<StructuredEdgeDetection> createStructuredEdgeDetection(const String &model,
