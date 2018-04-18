@@ -59,6 +59,56 @@ namespace ximgproc
 //! @addtogroup ximgproc_edge
 //! @{
 
+
+/*! random forest used to detect edges */
+    typedef struct RandomForest
+    {
+        /*! random forest options, e.g. number of trees */
+        struct RandomForestOptions
+        {
+            // model params
+
+            int numberOfOutputChannels; /*!< number of edge orientation bins for output */
+
+            int patchSize;              /*!< width of image patches */
+            int patchInnerSize;         /*!< width of predicted part inside patch*/
+
+            // feature params
+
+            int regFeatureSmoothingRadius;    /*!< radius for smoothing of regular features
+                                               *   (using convolution with triangle filter) */
+
+            int ssFeatureSmoothingRadius;     /*!< radius for smoothing of additional features
+                                               *   (using convolution with triangle filter) */
+
+            int shrinkNumber;                 /*!< amount to shrink channels */
+
+            int numberOfGradientOrientations; /*!< number of orientations per gradient scale */
+
+            int gradientSmoothingRadius;      /*!< radius for smoothing of gradients
+                                               *   (using convolution with triangle filter) */
+
+            int gradientNormalizationRadius;  /*!< gradient normalization radius */
+            int selfsimilarityGridSize;       /*!< number of self similarity cells */
+
+            // detection params
+            int numberOfTrees;            /*!< number of trees in forest to train */
+            int numberOfTreesToEvaluate;  /*!< number of trees to evaluate per location */
+
+            int stride;                   /*!< stride at which to compute edges */
+
+        } options;
+
+        int numberOfTreeNodes;
+
+        std::vector <int> featureIds;     /*!< feature coordinate thresholded at k-th node */
+        std::vector <float> thresholds;   /*!< threshold applied to featureIds[k] at k-th node */
+        std::vector <int> childs;         /*!< k --> child[k] - 1, child[k] */
+
+        std::vector <int> edgeBoundaries; /*!< ... */
+        std::vector <int> edgeBins;       /*!< ... */
+    };
+
 /*!
   Helper class for training part of [P. Dollar and C. L. Zitnick. Structured Forests for Fast Edge Detection, 2013].
  */
@@ -128,7 +178,6 @@ public:
      */
     CV_WRAP virtual void edgesNms(cv::InputArray edge_image, cv::InputArray orientation_image, cv::OutputArray _dst, int r = 2, int s = 0, float m = 1, bool isParallel = true) const = 0;
 
-    struct RandomForest;
     
     CV_WRAP virtual RandomForest getRf() const = 0;
             
