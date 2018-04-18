@@ -128,9 +128,11 @@ public:
      */
     CV_WRAP virtual void edgesNms(cv::InputArray edge_image, cv::InputArray orientation_image, cv::OutputArray _dst, int r = 2, int s = 0, float m = 1, bool isParallel = true) const = 0;
 
+    struct RandomForest;
+    
     RandomForest getRf();
             
-     void setRf(RandomForest rf);
+    void setRf(RandomForest rf);
             
 };
 
