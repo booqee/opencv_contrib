@@ -182,7 +182,7 @@ public:
     
     CV_WRAP virtual RandomForest_t getRf() const = 0;
             
-    CV_WRAP virtual void setRf(RandomForest_t rf);
+    CV_WRAP virtual void setRf(RandomForest_t rf) = 0;
             
 };
 
